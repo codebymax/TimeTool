@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+    <title>TimeTool {% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
+</head>
+
+<body>
+<div class="jumbotron vertical-center">
+    <div class="container text-center square">
+        <div>
+            <section class="content">
+                <header>
+                    {% block header %}{% endblock %}
+                </header>
+                {% block content %}{% endblock %}
+                {% for message in get_flashed_messages() %}
+                    <div class="flash">{{ message }}</div>
+                {% endfor %}
+            </section>
+        </div>
+    </div>
+</div>
+</body>
+</html>

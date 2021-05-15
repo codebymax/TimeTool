@@ -40,14 +40,23 @@ def get_weeks(uid, timesDB):
     return weeks
 
 
+def current_week(weeks):
+    start, end = find_current_week()
+
+    for week in weeks:
+        if week['start'] == start and week['end'] == end:
+            return week
+
+    return None
+
+
+
 def find_current_week():
     months = {1: 31, 2: 28, 3: 31, 4: 30, 5: 31, 6: 30, 7: 31, 8: 31, 9: 30, 10: 31, 11: 30, 12: 31}
     today = datetime.datetime.today()
 
     start = {'year': today.year, 'month': today.month, 'day': today.day}
 
-    if today.weekday() > 4:
-        raise Exception('It\'s not a weekday!')
     for num in range(today.weekday()):
         if start['day'] == 1:
             if start['month'] == 1:

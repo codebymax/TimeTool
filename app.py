@@ -19,8 +19,12 @@ timesDB = mongo.db.times
 
 @app.before_request
 def load_user():
-    if "_id" in session:
-        g.user = {'_id': session['_id'], 'username': session['username']}
+    if '_id' in session:
+        g.user = {'_id': session['_id'], 'username': session['username'], 'status': session['status']}
+    if 'start' in session:
+        g.user['start'] = session['start']
+        g.user['end'] = session['end']
+        g.user['hours'] = session['hours']
 
 
 @app.route('/home')

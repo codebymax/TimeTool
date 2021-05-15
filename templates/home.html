@@ -1,32 +1,25 @@
-<!doctype html>
-<html>
-<head>
-    <title>{% block title %}{% endblock %} TimeTool</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
-</head>
+{% extends 'base.html' %}
 
-<body>
-<div class="jumbotron vertical-center">
-    <div class="container text-center square">
-        <div>
-            <h1 style="padding-bottom: 1rem; display: inline">Time Tool</h1>
-            <section class="content">
-                <header>
-                    {% block header %}{% endblock %}
-                </header>
-                {% block content %}{% endblock %}
-            </section>
-            {% if g.user %}
-                <h5>Logged in as {{ g.user['username'] }}</h5>
-                <a class="btn btn-primary" href="{{ url_for('auth.logout') }}"">Log Out</a>
-            {% else %}
-                <p></p>
-                <a class="btn btn-primary" style="margin-right: 1rem;" href="{{ url_for('auth.login') }}">Log In</a>
-                <a class="btn btn-primary" style="margin-left: 1rem;" href="{{ url_for('auth.add_user') }}">Register</a>
-            {% endif %}
-        </div>
-    </div>
-</div>
-</body>
-</html>
+{% block header %}
+    <h1>{% block title %}Time Tool{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    {% if g.user %}
+        <h5>User {{ g.user['username'] }} is checked {{ g.user['status'] }}</h5>
+        <h5>Week: {{ g.user['start'] }} to {{ g.user['end'] }}</h5>
+        <h5>Hours this week: {{ g.user['hours'] }}</h5>
+        <br>
+        {% if g.user['status'] == 'in' %}
+            <a class="btn btn-primary text-center" href="{{ url_for('check_out', uid=g.user['_id']) }}">Check out</a>
+        {%  else %}
+            <a class="btn btn-primary text-center" href="{{ url_for('check_in', uid=g.user['_id']) }}">Check in</a>
+        {% endif %}
+        <br><br>
+        <a class="btn btn-primary" href="{{ url_for('auth.logout') }}">Log Out</a>
+    {% else %}
+        <p></p>
+        <a class="btn btn-primary" style="margin-right: 1rem;" href="{{ url_for('auth.login') }}">Log In</a>
+        <a class="btn btn-primary" style="margin-left: 1rem;" href="{{ url_for('auth.sign_up') }}">Register</a>
+    {% endif %}
+{% endblock %}
