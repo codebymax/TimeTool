@@ -7,20 +7,18 @@
 </head>
 
 <body>
-<div class="jumbotron vertical-center">
-    <div class="container text-center square">
-        <div>
-            <section class="content">
-                <header>
-                    {% block header %}{% endblock %}
-                </header>
-                {% block content %}{% endblock %}
-                {% for message in get_flashed_messages() %}
-                    <div class="flash">{{ message }}</div>
-                {% endfor %}
-            </section>
+<div class="placemat">
+        <div class="center-screen">
+            {% block header %}{% endblock %}
+            <div class="container square">
+                <section class="content">
+                    {% block content %}{% endblock %}
+                    {% for message in get_flashed_messages() %}
+                        <div class="flash">{{ message }}</div>
+                    {% endfor %}
+                </section>
+            </div>
         </div>
-    </div>
 </div>
 </body>
 </html>

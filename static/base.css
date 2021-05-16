@@ -3,7 +3,7 @@ body, html {
   background-color: #fae3d9 !important;
 }
 
-.jumbotron {
+.placemat {
   background-color: #fff3e6 !important;
   color: #c1a1d3;
 }
@@ -18,34 +18,21 @@ body, html {
 }
 
 .container{
+  background-color: #1a508b;
   padding: 2rem 1rem;
   margin-bottom: 2rem;
   border-radius: .3rem;
   z-index: 1;
+  font: 16px/1 "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-.vertical-center {
-  height: 100%;
-  width: 100%;
-
-  text-align: center;  /* align the inline(-block) elements horizontally */
-  font: 0/0 a;         /* remove the gap between inline(-block) elements */
-}
-
-.vertical-center:before {    /* create a full-height inline block pseudo=element */
-  content: ' ';
-  display: inline-block;
-  vertical-align: middle;  /* vertical alignment of the inline element */
-  height: 100%;
-}
-
-.vertical-center > .container {
-  max-width: 100%;
-  background-color: #1a508b;
-
-  display: inline-block;
-  vertical-align: middle;  /* vertical alignment of the inline element */
-  font: 16px/1 "Helvetica Neue", Helvetica, Arial, sans-serif;        /* <-- reset the font property */
+.center-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
 }
 
 .btn-primary {
